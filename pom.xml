@@ -43,7 +43,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>de.bentzin.hoever.Bot</mainClass>
+                            <mainClass>de.bentzin.reke.Bot</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
