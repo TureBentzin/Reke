@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Ture Bentzin
@@ -24,6 +26,9 @@ public class SanctionList {
 
     @Nullable
     private String globalFileId;
+
+    @NotNull
+    private List<SanctionEntity> sanctions = new ArrayList<>();
 
     @Nullable
     public URI getXmlns() {
@@ -59,12 +64,23 @@ public class SanctionList {
     }
 
     @NotNull
+    public List<SanctionEntity> getSanctions() {
+        return sanctions;
+    }
+
+    @XmlElement(name = "sanctionEntity", namespace = "http://eu.europa.ec/fpi/fsd/export")
+    public void setSanctions(@NotNull List<SanctionEntity> sanctions) {
+        this.sanctions = sanctions;
+    }
+
+    @NotNull
     @Override
     public String toString() {
         return "SanctionList{" +
                 "xmlns=" + xmlns +
                 ", generationDate='" + generationDate + '\'' +
                 ", globalFileId='" + globalFileId + '\'' +
+                ", sanctions=" + sanctions +
                 '}';
     }
 }
