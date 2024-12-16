@@ -15,6 +15,8 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,6 +34,9 @@ public class DataManager {
     @NotNull
     public static final Logger logger = LoggerFactory.getLogger(DataManager.class);
 
+    @NotNull
+    private static final String URL = "https://webgate.ec.europa.eu/fsd/fsf/public/files/xmlFullSanctionsList/content?token=dG9rZW4tMjAxNw";
+
     public DataManager() {
 
     }
@@ -40,7 +45,32 @@ public class DataManager {
      * @return number of sanctions uodated
      */
     public int update() {
-        logger.warn("Not implemented yet.");
-        return 0;
+        logger.info("Downloading sanctions list from: {}", URL);
+        try {
+            InputStream inputStream = new URL(URL).openStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            StringBuilder builder = new StringBuilder();
+            while ((line = reader.readLine()) != null) {
+                builder.append(line);
+            }
+            reader.close();
+            inputStream.close();
+            String content = builder.toString();
+            logger.info("Downloaded {} bytes.", content.length());
+            parseXML(content);
+            return 0;
+        } catch (IOException e) {
+            logger.error("Failed to download sanctions list.", e);
+            return 0;
+        }
+    }
+
+    private void parseXML(@NotNull String content) {
+        try {
+            JAXBContext context = JAXBContext.newInstance(SanctionList.class);
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

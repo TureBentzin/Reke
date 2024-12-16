@@ -30,6 +30,12 @@ public class SanctionEntity {
     private Regulation regulation;
 
     @Nullable
+    private SubjectType subjectType;
+
+    @Nullable
+    private NameAlias nameAlias;
+
+    @Nullable
     public String getDesignationDetails() {
         return designationDetails;
     }
@@ -79,6 +85,7 @@ public class SanctionEntity {
         this.regulation = regulation;
     }
 
+    @Nullable
     @Override
     public String toString() {
         return "SanctionEntity{" +
@@ -88,5 +95,25 @@ public class SanctionEntity {
                 ", remark='" + remark + '\'' +
                 ", regulation=" + regulation +
                 '}';
+    }
+
+    @Nullable
+    public NameAlias getNameAlias() {
+        return nameAlias;
+    }
+
+    @XmlElement(name = "nameAlias", namespace = "http://eu.europa.ec/fpi/fsd/export")
+    public void setNameAlias(@Nullable NameAlias nameAlias) {
+        this.nameAlias = nameAlias;
+    }
+
+    @Nullable
+    public SubjectType getSubjectType() {
+        return subjectType;
+    }
+
+    @XmlElement(name = "subjectType", namespace = "http://eu.europa.ec/fpi/fsd/export")
+    public void setSubjectType(@Nullable SubjectType subjectType) {
+        this.subjectType = subjectType;
     }
 }
