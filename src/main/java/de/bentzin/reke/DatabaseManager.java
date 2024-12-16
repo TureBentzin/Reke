@@ -10,13 +10,6 @@ import java.net.URL;
 import java.sql.*;
 import java.util.*;
 
-/*
- This database will store the following data:
- - Guilds (guildid, channel, event_link)
- - Files  (url, name, topic)
- - History (channel, url)
- */
-
 /**
  * @author Ture Bentzin
  * @since 26-03-2024

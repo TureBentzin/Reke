@@ -49,13 +49,6 @@ public class UpdateTask implements Runnable {
                 logger.debug(e.getMessage(), e);
                 return;
             }
-            //pick new random activity
-            try {
-                Bot.getJda().getPresence().setActivity(Activity.competing(Bot.getDatabaseManager().getRandomTopic()));
-            } catch (Exception e) {
-                logger.warn("Failed to set activity", e);
-                failedAttempts++;
-            }
         }
     }
 }
