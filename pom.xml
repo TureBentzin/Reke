@@ -95,10 +95,10 @@
                         <configuration>
                             <target>
                                 <move file="${project.basedir}/test-env/${project.build.finalName}.jar"
-                                      tofile="${project.basedir}/test-env/Hoever.jar"
+                                      tofile="${project.basedir}/test-env/${project.artifactId}.jar"
                                       overwrite="true"/>
                                 <move file="${project.build.directory}/${project.build.finalName}.jar"
-                                      tofile="${project.build.directory}/Hoever.jar"
+                                      tofile="${project.build.directory}/${project.artifactId}.jar"
                                       overwrite="true"/>
                             </target>
                         </configuration>
